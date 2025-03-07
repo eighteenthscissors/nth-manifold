@@ -1,0 +1,56 @@
+[gd_scene load_steps=5 format=3 uid="uid://cbnqetoc1e6we"]
+
+[ext_resource type="Script" path="res://script s/cam.gd" id="1_lhug2"]
+[ext_resource type="PackedScene" uid="uid://1j7f3306b634" path="res://scene s/buttncase.tscn" id="1_oscmd"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hcphp"]
+size = Vector2(260.125, 3.625)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nu1vm"]
+size = Vector2(6.625, 160)
+
+[node name="Camera2D" type="Camera2D"]
+zoom = Vector2(5, 5)
+script = ExtResource("1_lhug2")
+
+[node name="buttncase" parent="." instance=ExtResource("1_oscmd")]
+offset_top = 1.0
+offset_bottom = 1.0
+
+[node name="ycollison" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 256
+
+[node name="yc1" type="CollisionShape2D" parent="ycollison"]
+position = Vector2(0, -87)
+shape = SubResource("RectangleShape2D_hcphp")
+
+[node name="xcollision" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 256
+
+[node name="xc2" type="CollisionShape2D" parent="xcollision"]
+position = Vector2(124.625, -1)
+shape = SubResource("RectangleShape2D_nu1vm")
+
+[node name="ycollisionreciprocal" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 256
+
+[node name="yc2" type="CollisionShape2D" parent="ycollisionreciprocal"]
+position = Vector2(1.0625, 86.1875)
+shape = SubResource("RectangleShape2D_hcphp")
+
+[node name="xcollisionreciprocal" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 256
+
+[node name="xc1" type="CollisionShape2D" parent="xcollisionreciprocal"]
+position = Vector2(-130.688, 1)
+shape = SubResource("RectangleShape2D_nu1vm")
+
+[connection signal="body_entered" from="ycollison" to="." method="_on_ycollison_body_entered"]
+[connection signal="body_entered" from="ycollison" to="ycollison" method="_on_body_entered"]
+[connection signal="body_entered" from="xcollision" to="." method="_on_xcollision_body_entered"]
+[connection signal="body_entered" from="ycollisionreciprocal" to="." method="_on_ycollisionreciprocal_body_entered"]
+[connection signal="body_entered" from="xcollisionreciprocal" to="." method="_on_xcollisionreciprocal_body_entered"]

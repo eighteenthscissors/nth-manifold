@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://6ch636a4eox6"]
+
+[ext_resource type="Script" path="res://script s/rediscobotmini.gd" id="1_6i7q3"]
+[ext_resource type="Texture2D" uid="uid://x6vd2kjyoini" path="res://asset s/nosed1miniboss.png" id="1_ojuje"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gnkfw"]
+size = Vector2(98, 97)
+
+[node name="rediscobotmini" type="Area2D"]
+modulate = Color(0.517647, 0, 0, 1)
+scale = Vector2(0.2, 0.2)
+collision_layer = 256
+collision_mask = 0
+script = ExtResource("1_6i7q3")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_ojuje")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_gnkfw")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

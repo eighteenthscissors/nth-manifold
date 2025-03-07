@@ -1,0 +1,93 @@
+[gd_scene load_steps=7 format=3 uid="uid://1j7f3306b634"]
+
+[ext_resource type="Script" path="res://script s/buttncase.gd" id="1_sdy0m"]
+[ext_resource type="Texture2D" uid="uid://1vuyhhdyfmk4" path="res://asset s/jumpAI.png" id="5_j1w1p"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_30e5d"]
+light_mode = 1
+particles_animation = true
+particles_anim_h_frames = 4
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="GDScript" id="GDScript_3wjkq"]
+script/source = "extends TextureRect
+
+
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	if (Stat.extravars[0])==0:
+		visible=false
+	else:
+		visible=true
+"
+
+[sub_resource type="LabelSettings" id="LabelSettings_phyg7"]
+font_size = 24
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="GDScript" id="GDScript_sqbjp"]
+script/source = "extends Label
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	text=str(Stat.extravars[0])
+	if (Stat.extravars[0])==0:
+		visible=false
+	else:
+		visible=true
+"
+
+[node name="buttncase" type="Control"]
+z_index = 4
+material = SubResource("CanvasItemMaterial_30e5d")
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.495031, 0.508025)
+script = ExtResource("1_sdy0m")
+
+[node name="VBoxContainer" type="HBoxContainer" parent="."]
+z_index = 25
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.033
+anchor_top = 0.029
+anchor_right = 0.033
+anchor_bottom = 0.029
+offset_left = -242.109
+offset_top = -135.452
+offset_right = -212.109
+offset_bottom = -105.452
+scale = Vector2(0.5, 0.5)
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("5_j1w1p")
+stretch_mode = 2
+script = SubResource("GDScript_3wjkq")
+
+[node name="Label" type="Label" parent="VBoxContainer/TextureRect"]
+layout_mode = 0
+offset_left = 42.4216
+offset_top = -3.05176e-05
+offset_right = 82.4216
+offset_bottom = 34.0
+text = "e"
+label_settings = SubResource("LabelSettings_phyg7")
+script = SubResource("GDScript_sqbjp")
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+z_index = 11
+layout_mode = 0
+offset_left = -261.0
+offset_top = -191.0
+offset_right = 262.0
+offset_bottom = -117.0
+color = Color(1, 1, 1, 0.509804)
